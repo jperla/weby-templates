@@ -1,0 +1,38 @@
+# ignore data
+*.data
+*.csv
+*.shelf
+*.xls
+*.json
+*.doc
+*.pdf
+
+*.zip
+*.png
+*.jpg
+*.gif
+*.mp3
+*.gz
+
+#compiled python files
+*.pyc
+
+#for vim files
+*.swp
+
+#for emacs files?
+*~
+*.cache
+*#*
+
+#for some other editor?
+*.DS_Store
+
+# C#
+*.dll
+*.exe
+*.exe.manifest
+*.pdb
+*.XML
+*.tmp
+*.temp

@@ -66,8 +66,8 @@ def _generate_container(open, end_open, close, default_attrs={}):
 
 def _generate_block_tag(tag_name, default_attrs={}):
     return _generate_container(u'<%s' % tag_name, 
-                               u'>\n', 
-                               u'</%s>\n' % tag_name,
+                               u'>', 
+                               u'</%s>' % tag_name,
                                default_attrs)
 
 no_arg = object()
@@ -111,9 +111,9 @@ def a_href(href=None, text='', attrs={}):
     return u'<a %(options)s>%(text)s</a>' % { u'text':text, u'options':options}
 
 def br():
-    return u'<br />\n'
+    return u'<br />'
 def hr():
-    return u'<hr />\n'
+    return u'<hr />'
 
 
 #TODO: jperla: pre code broken for with statement
@@ -150,6 +150,6 @@ def input_radio(name=None, value=None, id=None, attrs={}):
 
 script_block = _generate_container(u'<script',
                                    u'><!--', 
-                                   u'--></script>\n',
+                                   u'--></script>',
                                    {u'type':u'text/javascript'})
 
