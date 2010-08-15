@@ -186,3 +186,20 @@
                     p(add_greeting('World'))
  </code>
 </pre>
+<h2>
+ FAQ
+</h2>
+<p>
+ Q: I get this unicode error: 'Always work with Unicode', what is this?
+</p>
+<p>
+ A: I love Python, but Python 2.x made some poor assumptions when it comes to unicode compliance which some other languages like Ruby do not suffer from.  It contains both str and unicode types, and their interaction can sometimes cause problems.
+        
+        Python 3.x fixes this by only having one string datatype: unicode.  This greatly simplifies everything, but most code is still on the 2.x branch.  To avoid annoying and difficult to debug situations, Weby Templates always outputs unicode, and it only accepts unicode.  It does not try to intelligently or magically deal with improper strings; magic like that is hard to debug.  The developer will explicitly deal with that before passing strings to Weby Templates. Explicit is better than implicit.
+</p>
+<p>
+ As a tip, make sure you always use unicode throughout your app, and only encode/decode strings when you are inputting/outputting data to the world.  For reading from files, use the 'codecs' package in the standard library.  Also, read this excellent article about Unicode from Joel Spolsky:
+ <a href="http://www.joelonsoftware.com/articles/Unicode.html">
+  http://www.joelonsoftware.com/articles/Unicode.html
+ </a>
+</p>
