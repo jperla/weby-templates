@@ -11,7 +11,7 @@ def main(p):
             p(html.h1('Weby templates'))
 
             p(html.p(u"""
-                Weby templates are the best templates ever created.  They are absolutely incredibly easy things to work with.  They are made for lazy people.  They have 2 main benefits:
+                Weby templates are used in production on websites that have garnered over 500,000 uniques a month.  They are incredibly easy to work with.  They are the template language for lazy people.  They have 3 main benefits:
             """))
 
             with p(html.ul()):
@@ -22,7 +22,7 @@ def main(p):
                 #p(html.li(u'safer') # when it has object cleaning
 
             p(html.p(u"""
-                The main codebase is implemented in 100 source lines of code.  Extensive libraries only add just a couple hundred other lines of code. It is simple.  It is compiled and fast.  It is unicode compliant and safe.  You can be fully fluent within 5 minutes since it is just Python and transparent library.
+                The main codebase is implemented in 100 source lines of code.  Extensive libraries only add just a couple hundred other lines of code. It is simple.  It ensures that all tags have closing tags.  It is compiled and fast.  It is unicode compliant and safe.  You can be fully fluent within 5 minutes since it is just Python and a transparent library.
             """))
 
             p(easier())
@@ -36,13 +36,22 @@ def main(p):
 def faq(p):
     p(html.h2('FAQ'))
     p(split_paragraphs(u"""
-        Q: I get this unicode error: 'Always work with Unicode', what is this?
+        """ + html.b('Q: I get this unicode error: "Always work with Unicode", what is this?') + u"""
 
         A: I love Python, but Python 2.x made some poor assumptions when it comes to unicode compliance which some other languages like Ruby do not suffer from.  It contains both str and unicode types, and their interaction can sometimes cause problems.
         
         Python 3.x fixes this by only having one string datatype: unicode.  This greatly simplifies everything, but most code is still on the 2.x branch.  To avoid annoying and difficult to debug situations, Weby Templates always outputs unicode, and it only accepts unicode.  It does not try to intelligently or magically deal with improper strings; magic like that is hard to debug.  The developer will explicitly deal with that before passing strings to Weby Templates. Explicit is better than implicit.
 
-        As a tip, make sure you always use unicode throughout your app, and only encode/decode strings when you are inputting/outputting data to the world.  For reading from files, use the 'codecs' package in the standard library.  Also, read this excellent article about Unicode from Joel Spolsky: """ + html.a('http://www.joelonsoftware.com/articles/Unicode.html', {'href': 'http://www.joelonsoftware.com/articles/Unicode.html'})
+        As a tip, make sure you always use unicode throughout your app, and only encode/decode strings when you are inputting/outputting data to the world.  For reading from files, use the 'codecs' package in the standard library.  Also, read this excellent article about Unicode from Joel Spolsky: """ + html.a('http://www.joelonsoftware.com/articles/Unicode.html', {'href': 'http://www.joelonsoftware.com/articles/Unicode.html'}) + """
+
+        """ + html.b('Q: I like that Django Templates constrain me.  It helps me ensure that I keep templates strictly within an MVC framework.  Can I do this with Weby Templates?') + u"""
+
+        First, since it is possible and even easy for some calls in Django Templates to have side effects, so be aware that it only provides the illusion of constraints. In fact, database calls and state mutation can be embedded in the calls.  The template language merely encourages an MVC style which template writers often adhere to.
+
+        Second, in practice, we have used Weby Templates and similarly are encouraged to write in an MVC style due to the nature of the tool.  Mature app developers naturally have no compelling reason to violate the MVC framework, when it makes the most sense. Moreover, arguments are passed explicity to templates in the function arguments, unlike in Django where they are implicit and unpythonic, and the structure of with statements and accumulator naturally encourage an MVC style separation.
+        
+        Finally, since sometimes bits of html are generated in views (links, messages, etc), you can use the same template library and filters to generate these snippets as you use in your templates. Thus, you don't repeating yourself and have less, tighter code.  You do not need a separate file to generate a separate 1-line template, just add a 1-line function to your Python scripts.
+        """
     ))
 
 @weby.template()
@@ -166,7 +175,9 @@ def easier(p):
         Finally, straightforward helper libraries exist that make writing html or xml or using filters (functions that accept and output strings) easier.  For example, the html library is extremely useful.  Every html tag has an analogous function in the html library, as seen above.  The first argument are the content words, and the second argument is a dictionary of the attributes.  If the tag is in a with statement, then the first argument is just the dictionary of the attributes of the tag (since the contents are contained within the with statement.  That's all of the documentation you need to be productive in the library.
 
         This README is generated with Weby templates if you want more examples.
-    """))
+
+    """ + html.code('./README.py | ./weby_templates/tools/beautifier.py > README.html') + u"""
+"""))
 
 @weby.template()
 def faster(p):
