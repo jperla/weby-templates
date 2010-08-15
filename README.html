@@ -140,14 +140,12 @@
 <pre>
  <code>
   def many_hellos(num=10):
-                return ('Hello, World!
-' * num)
+                return ('Hello, World!\n' * num)
 
             def many_hellos_redux(num=10):
                 def many_hellos_generator(num=10):
                     for i in range(num):
-                        yield 'Hello, World!
-'
+                        yield 'Hello, World!\n'
 
                 return u''.join(many_hellos_generator(num))
 
@@ -160,15 +158,13 @@
             def many_hellos_decorated(p, num=10):
                 for i in range(num):
                     # raw function does not append newline
-                    p.raw(u'Hello, World!
-')
+                    p.raw(u'Hello, World!\n')
 
             @weby.template()
             def many_hellos_decorated(p, num=10):
                 for i in range(num):
                     # raw function does not append newline
-                    p.raw(u'Hello, World!
-')
+                    p.raw(u'Hello, World!\n')
 
 
 

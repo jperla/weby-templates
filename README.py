@@ -57,7 +57,7 @@ def more_flexible(p):
     """))
     
     with p((u'<pre><code>', u'</code></pre>')):
-        p(u"""
+        p(ur"""
             def many_hellos(num=10):
                 return ('Hello, World!\n' * num)
 
