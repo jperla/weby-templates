@@ -211,12 +211,13 @@ def faster(p):
         You get the whole python compiler and optimizer speeding up your templates.
     """))
 
+import re
 @weby.template()
 def split_paragraphs(p, long_text):
     """Splits on double newlines.  
     Returns the text htmlized with <p> elements.
     """
-    paragraphs = long_text.split('\n\n')
+    paragraphs = re.split('\\n\s*\\n', long_text)
     for paragraph in paragraphs:
         p(html.p(paragraph))
 
